@@ -1,0 +1,19 @@
+"--core" 
+
+"rh850" 
+
+"-p" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\rh850\config\debugger\ior7f701422.ddf" 
+
+"--double=64" 
+
+"-d" 
+
+"sim" 
+
+"--multicore_nr_of_cores=1" 
+
+
+
+
