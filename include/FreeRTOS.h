@@ -900,7 +900,7 @@ typedef struct xSTATIC_LIST
  * strict data hiding policy.  This means the Task structure used internally by
  * FreeRTOS is not accessible to application code.  However, if the application
  * writer wants to statically allocate the memory required to create a task then
- * the size of the task object needs to be know.  The StaticTask_t structure
+ * the size of the task object needs to be known.  The StaticTask_t structure
  * below is provided for this purpose.  Its sizes and alignment requirements are
  * guaranteed to match those of the genuine structure, no matter which
  * architecture is being used, and no matter how the values in FreeRTOSConfig.h
@@ -909,46 +909,45 @@ typedef struct xSTATIC_LIST
  */
 typedef struct xSTATIC_TCB
 {
-	void				*pxDummy1;
-	#if ( portUSING_MPU_WRAPPERS == 1 )
-		xMPU_SETTINGS	xDummy2;
-	#endif
-	StaticListItem_t	xDummy3[ 2 ];
-	UBaseType_t			uxDummy5;
-	void				*pxDummy6;
-	uint8_t				ucDummy7[ configMAX_TASK_NAME_LEN ];
-	#if ( portSTACK_GROWTH > 0 )
-		void			*pxDummy8;
-	#endif
+	int		*dummy0;
+	#if (portUSING_MPU_WRAPPERS == 1)
+		xMPU_SETTINGS	dummy1;
+	#endif	
+	int		*dummy2;
+	int		*dummy3;
+	char		*dummy4[configMAX_TASK_NAME_LEN];
+	long 		dummy5;
+	char 		dummy6[40];
 	#if ( portCRITICAL_NESTING_IN_TCB == 1 )
-		UBaseType_t		uxDummy9;
+		long	dummy7;
 	#endif
 	#if ( configUSE_TRACE_FACILITY == 1 )
-		UBaseType_t		uxDummy10[ 2 ];
+		long	dummy8[2];
 	#endif
 	#if ( configUSE_MUTEXES == 1 )
-		UBaseType_t		uxDummy12[ 2 ];
+		long	dummy9[2];
 	#endif
 	#if ( configUSE_APPLICATION_TASK_TAG == 1 )
-		void			*pxDummy14;
+		TaskHookFunction_t dummy10;
 	#endif
 	#if( configNUM_THREAD_LOCAL_STORAGE_POINTERS > 0 )
-		void			*pvDummy15[ configNUM_THREAD_LOCAL_STORAGE_POINTERS ];
+		void 	*dummy11[configNUM_THREAD_LOCAL_STORAGE_POINTERS];
 	#endif
-	#if ( configGENERATE_RUN_TIME_STATS == 1 )
-		uint32_t		ulDummy16;
+	#if( configGENERATE_RUN_TIME_STATS == 1 )
+		char	dummy12[4];
 	#endif
 	#if ( configUSE_NEWLIB_REENTRANT == 1 )
-		struct	_reent	xDummy17;
+		struct	_reent dummy13;
 	#endif
-	#if ( configUSE_TASK_NOTIFICATIONS == 1 )
-		uint32_t 		ulDummy18;
-		uint8_t 		ucDummy19;
+	#if( configUSE_TASK_NOTIFICATIONS == 1 )
+		char 	dummy14[5];
 	#endif
-	#if( ( configSUPPORT_STATIC_ALLOCATION == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) )
-		uint8_t			uxDummy20;
+	#if( tskSTATIC_AND_DYNAMIC_ALLOCATION_POSSIBLE != 0 )
+		char	dummy15;
 	#endif
-
+	#if( INCLUDE_xTaskAbortDelay == 1 )
+		char 	dummy16;
+	#endif
 } StaticTask_t;
 
 /*

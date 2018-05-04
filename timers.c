@@ -539,6 +539,7 @@ static void prvTimerTask( void *pvParameters )
 {
 TickType_t xNextExpireTime;
 BaseType_t xListWasEmpty;
+extern unsigned int testcountTim;
 
 	/* Just to avoid compiler warnings. */
 	( void ) pvParameters;
@@ -567,6 +568,7 @@ BaseType_t xListWasEmpty;
 
 		/* Empty the command queue. */
 		prvProcessReceivedCommands();
+		testcountTim++;
 	}
 }
 /*-----------------------------------------------------------*/
