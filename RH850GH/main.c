@@ -96,7 +96,7 @@
 #include "task.h"
 
 /* Demo file headers. */
-#include <intrinsics.h>
+//#include <intrinsics.h>
 #include "BlockQ.h"
 #include "death.h"
 #include "flash.h"

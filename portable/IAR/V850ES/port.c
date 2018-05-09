@@ -200,25 +200,25 @@ void vPortEndScheduler( void )
  */
 static void prvSetupTimerInterrupt( void )
 {
-	TM0CE     = 0;	/* TMM0 operation disable */
-	TM0EQMK0  = 1;	/* INTTM0EQ0 interrupt disable */
-	TM0EQIF0  = 0;	/* clear INTTM0EQ0 interrupt flag */
+//	TM0CE     = 0;	/* TMM0 operation disable */
+//	TM0EQMK0  = 1;	/* INTTM0EQ0 interrupt disable */
+//	TM0EQIF0  = 0;	/* clear INTTM0EQ0 interrupt flag */
 
 	#ifdef __IAR_V850ES_Fx3__
 	{
-		TM0CMP0   = (((configCPU_CLOCK_HZ / configTICK_RATE_HZ) / 2)-1);    /* divided by 2 because peripherals only run at CPU_CLOCK/2 */
+//		TM0CMP0   = (((configCPU_CLOCK_HZ / configTICK_RATE_HZ) / 2)-1);    /* divided by 2 because peripherals only run at CPU_CLOCK/2 */
 	}
 	#else
 	{
-		TM0CMP0   = (configCPU_CLOCK_HZ / configTICK_RATE_HZ);	
+//		TM0CMP0   = (configCPU_CLOCK_HZ / configTICK_RATE_HZ);	
 	}
 	#endif
 
-	TM0EQIC0 &= 0xF8;
-	TM0CTL0   = 0x00;
-	TM0EQIF0 =  0;	/* clear INTTM0EQ0 interrupt flag */
-	TM0EQMK0 =  0;	/* INTTM0EQ0 interrupt enable */
-	TM0CE =     1;	/* TMM0 operation enable */
+//	TM0EQIC0 &= 0xF8;
+//	TM0CTL0   = 0x00;
+//	TM0EQIF0 =  0;	/* clear INTTM0EQ0 interrupt flag */
+//	TM0EQMK0 =  0;	/* INTTM0EQ0 interrupt enable */
+//	TM0CE =     1;	/* TMM0 operation enable */
 }
 /*-----------------------------------------------------------*/
 
